@@ -25,16 +25,16 @@ const ProductFilter = () => {
   // console.log(allBrands);
 
   useEffect(() => {
-    dispatch(FILTER_BY_BRAND({products, brand}))
+    dispatch(FILTER_BY_BRAND({ products, brand }))
   }, [dispatch, products, brand]);
-  
+
   useEffect(() => {
-    dispatch(FILTER_BY_PRICE({products, price}));
+    dispatch(FILTER_BY_PRICE({ products, price }));
   }, [dispatch, products, price]);
 
   const filterProducts = (cat) => {
     setCategory(cat)
-    dispatch(FILTER_BY_CATEGORY({products, category: cat}))
+    dispatch(FILTER_BY_CATEGORY({ products, category: cat }))
   };
 
   const clearFilters = () => {
@@ -42,19 +42,19 @@ const ProductFilter = () => {
     setBrand("All");
     setPrice(maxPrice);
   };
-  
+
   return (
     <div className={styles.filter}>
       <h4>Categories</h4>
       <div className={styles.category}>
         {allCategories.map((cat, index) => {
           return (
-            <button key={index} type="button" 
-            className={`${category}` === cat ? 
-            `${styles.active}` : null}
-            onClick={() => filterProducts(cat)}
+            <button key={index} type="button"
+              className={`${category}` === cat ?
+                `${styles.active}` : null}
+              onClick={() => filterProducts(cat)}
             >&#8250; {cat}</button>
-            
+
           )
         })}
       </div>
@@ -71,13 +71,13 @@ const ProductFilter = () => {
         <h4>Price</h4>
         <p>{`$${price}`}</p>
         <div className={styles.price}>
-          <input type="range" value={price} onChange={(e) => setPrice(e.target.value)} min={minPrice} max={maxPrice}/>
+          <input type="range" value={price} onChange={(e) => setPrice(e.target.value)} min={minPrice} max={maxPrice} />
         </div>
-        <br/>
+        <br />
         <button className='--btn --btn-danger'
-        onClick={clearFilters}>Clear Filter</button>
+          onClick={clearFilters}>Clear Filter</button>
       </div>
-      
+
     </div>
   )
 }
